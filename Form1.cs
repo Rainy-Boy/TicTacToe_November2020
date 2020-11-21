@@ -49,7 +49,7 @@ namespace TicTacToe_November2020
 
         private void CheckWinner()
         {
-            if(pictureBox1.Tag == pictureBox2.Tag && pictureBox1 == pictureBox3.Tag)
+            if(pictureBox1.Tag == pictureBox2.Tag && pictureBox2.Tag == pictureBox3.Tag)
             {
                 GameOver();
             }
