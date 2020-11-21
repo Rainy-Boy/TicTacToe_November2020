@@ -12,9 +12,29 @@ namespace TicTacToe_November2020
 {
     public partial class Form1 : Form
     {
+        private string turn = "X";
+
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void PictureBox_Click(object sender, EventArgs e)
+        {
+            var picture = (PictureBox)sender;
+
+            picture.SizeMode = PictureBoxSizeMode.StretchImage;
+            if (turn == "X")
+            {
+                picture.Image = Properties.Resources.X_tic;
+                turn = "O";
+                
+            }
+            else
+            {
+                picture.Image = Properties.Resources.O_tic;
+                turn = "X";
+            }
         }
     }
 }
