@@ -10,13 +10,13 @@ using System.Windows.Forms;
 
 namespace TicTacToe_November2020
 {
-    public partial class Form1 : Form
+    public partial class Game : Form
     {
         private string turn = "X";
         int turnCounter = 0;
-        bool gameActive = true;
+        private bool gameActive = true;
 
-        public Form1()
+        public Game()
         {
             InitializeComponent();
         }
@@ -58,57 +58,93 @@ namespace TicTacToe_November2020
 
         private void CheckWinner()
         {
-            if(turnCounter < 3)
+          
+            if(pictureBox1.Tag == pictureBox2.Tag && pictureBox2.Tag == pictureBox3.Tag && pictureBox1.Tag != null)
             {
-                return;
+                HighlightCells(pictureBox1, pictureBox2, pictureBox3);
+                GameOver("win");
             }
-            //I also gave pictureBoxes 1, 5 and 9 each a unique "balance" tag in designer mode so everything works
-            
-
-            if(pictureBox1.Tag == pictureBox2.Tag && pictureBox2.Tag == pictureBox3.Tag)
+            else if(pictureBox4.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox6.Tag && pictureBox5.Tag != null)
             {
-                GameOver();
+                HighlightCells(pictureBox4, pictureBox5, pictureBox6);
+                GameOver("win");
             }
-            else if(pictureBox4.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox6.Tag)
+            else if(pictureBox7.Tag == pictureBox8.Tag && pictureBox8.Tag == pictureBox9.Tag && pictureBox9.Tag != null)
             {
-                GameOver();
+                HighlightCells(pictureBox7, pictureBox8, pictureBox9);
+                GameOver("win");
             }
-            else if(pictureBox7.Tag == pictureBox8.Tag && pictureBox8.Tag == pictureBox9.Tag)
+            else if (pictureBox1.Tag == pictureBox4.Tag && pictureBox4.Tag == pictureBox7.Tag && pictureBox4.Tag != null)
             {
-                GameOver();
+                HighlightCells(pictureBox1, pictureBox4, pictureBox7);
+                GameOver("win");
             }
-            else if (pictureBox1.Tag == pictureBox4.Tag && pictureBox4.Tag == pictureBox7.Tag)
+            else if (pictureBox2.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox8.Tag && pictureBox5.Tag != null)
             {
-                GameOver();
+                HighlightCells(pictureBox2, pictureBox5, pictureBox8);
+                GameOver("win");
             }
-            else if (pictureBox2.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox8.Tag)
+            else if (pictureBox3.Tag == pictureBox6.Tag && pictureBox6.Tag == pictureBox9.Tag && pictureBox6.Tag != null)
             {
-                GameOver();
+                HighlightCells(pictureBox3, pictureBox6, pictureBox9);
+                GameOver("win");
             }
-            else if (pictureBox3.Tag == pictureBox6.Tag && pictureBox6.Tag == pictureBox9.Tag)
+            else if (pictureBox1.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox9.Tag && pictureBox5.Tag != null)
             {
-                GameOver();
+                HighlightCells(pictureBox1, pictureBox5, pictureBox9);
+                GameOver("win");
             }
-            else if (pictureBox1.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox9.Tag)
+            else if (pictureBox3.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox7.Tag && pictureBox3.Tag != null)
             {
-                GameOver();
+                HighlightCells(pictureBox3, pictureBox5, pictureBox7);
+                GameOver("win");
             }
-            else if (pictureBox3.Tag == pictureBox5.Tag && pictureBox5.Tag == pictureBox7.Tag)
+            else if (turnCounter > 8)
             {
-                GameOver();
+                GameOver("tie");
             }
         }
 
         
 
-        private void GameOver()
+        private void GameOver(string endType)
         {
             if (gameActive)
             {
-                MessageBox.Show("The winner is " + turn);
-                gameActive = false;
+                if(endType == "win")
+                {
+                    MessageBox.Show("The winner is " + turn);
+                    buttonReset.Visible = true;
+                    gameActive = false;
+                }
+               else if(endType == "tie")
+                {
+                    MessageBox.Show("Tie");
+                    buttonReset.Visible = true;
+                    gameActive = false;
+                }
             }
             
+        }
+
+        private void HighlightCells(PictureBox pb1, PictureBox pb2, PictureBox pb3)
+        {
+            pb1.BackColor = pb2.BackColor = pb3.BackColor = Color.Blue;
+        }
+
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+            PictureBox picture;
+            for(int counter = 1; counter < 10; counter++)
+            {
+                picture = (PictureBox)Grid.Controls["pictureBox" + counter];
+                picture.Image = null;
+                picture.Tag = null;
+                picture.BackColor = Color.Transparent;
+            }
+            gameActive = true;
+            buttonReset.Visible = false;
+            turnCounter = 0;
         }
     }
 }
