@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace TicTacToe_November2020
 {
@@ -18,7 +19,10 @@ namespace TicTacToe_November2020
 
         public Game()
         {
+            
             InitializeComponent();
+            this.Height = 318;
+            this.BackgroundImage = Properties.Resources.Background;
         }
 
         private void PictureBox_Click(object sender, EventArgs e)
@@ -41,6 +45,7 @@ namespace TicTacToe_November2020
             {
                 picture.Image = Properties.Resources.X_tic;
                 picture.Tag = turn;
+                clickaudio();
                 turnCounter += 1;
                 CheckWinner();
                 turn = "O";
@@ -50,6 +55,7 @@ namespace TicTacToe_November2020
             {
                 picture.Image = Properties.Resources.O_tic;
                 picture.Tag = turn;
+                clickaudio();
                 turnCounter += 1;
                 CheckWinner();
                 turn = "X";
@@ -113,23 +119,27 @@ namespace TicTacToe_November2020
             {
                 if(endType == "win")
                 {
+                    trumpetaudio();
                     MessageBox.Show("The winner is " + turn);
+                    this.Height = 378;
                     buttonReset.Visible = true;
                     gameActive = false;
                 }
                else if(endType == "tie")
-                {
-                    MessageBox.Show("Tie");
+               {
+                    trumpetaudio();
+                    MessageBox.Show("You tied. Both of you win!");
+                    this.Height = 378;
                     buttonReset.Visible = true;
                     gameActive = false;
-                }
+               }
             }
             
         }
 
         private void HighlightCells(PictureBox pb1, PictureBox pb2, PictureBox pb3)
         {
-            pb1.BackColor = pb2.BackColor = pb3.BackColor = Color.Blue;
+            pb1.BackColor = pb2.BackColor = pb3.BackColor = Color.DarkViolet;
         }
 
         private void buttonReset_Click(object sender, EventArgs e)
@@ -142,9 +152,23 @@ namespace TicTacToe_November2020
                 picture.Tag = null;
                 picture.BackColor = Color.Transparent;
             }
+            clickaudio();
             gameActive = true;
             buttonReset.Visible = false;
             turnCounter = 0;
+            this.Height = 320;
+        }
+
+        private void clickaudio()
+        {
+            SoundPlayer audio = new SoundPlayer(TicTacToe_November2020.Properties.Resources.Click); 
+            audio.Play();
+        }
+
+        private void trumpetaudio()
+        {
+            SoundPlayer audio = new SoundPlayer(TicTacToe_November2020.Properties.Resources.Victory);
+            audio.Play();
         }
     }
 }

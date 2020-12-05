@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.Grid = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonReset = new System.Windows.Forms.Button();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -38,7 +39,6 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.buttonReset = new System.Windows.Forms.Button();
             this.Grid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -53,6 +53,7 @@
             // 
             // Grid
             // 
+            this.Grid.BackColor = System.Drawing.Color.Transparent;
             this.Grid.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
             this.Grid.ColumnCount = 3;
             this.Grid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -75,6 +76,23 @@
             this.Grid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.Grid.Size = new System.Drawing.Size(703, 427);
             this.Grid.TabIndex = 0;
+            // 
+            // buttonReset
+            // 
+            this.buttonReset.BackColor = System.Drawing.Color.Transparent;
+            this.buttonReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.buttonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonReset.Font = new System.Drawing.Font("Monotype Corsiva", 33F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
+            this.buttonReset.ForeColor = System.Drawing.Color.Red;
+            this.buttonReset.Location = new System.Drawing.Point(99, 433);
+            this.buttonReset.Name = "buttonReset";
+            this.buttonReset.Size = new System.Drawing.Size(490, 88);
+            this.buttonReset.TabIndex = 1;
+            this.buttonReset.Text = "Reset";
+            this.buttonReset.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonReset.UseVisualStyleBackColor = false;
+            this.buttonReset.Visible = false;
+            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
             // 
             // pictureBox9
             // 
@@ -144,6 +162,7 @@
             // 
             // pictureBox3
             // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox3.Location = new System.Drawing.Point(471, 5);
             this.pictureBox3.Name = "pictureBox3";
@@ -175,27 +194,16 @@
             this.pictureBox1.Tag = "Balance1";
             this.pictureBox1.Click += new System.EventHandler(this.PictureBox_Click);
             // 
-            // buttonReset
-            // 
-            this.buttonReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(186)));
-            this.buttonReset.Location = new System.Drawing.Point(74, 433);
-            this.buttonReset.Name = "buttonReset";
-            this.buttonReset.Size = new System.Drawing.Size(549, 84);
-            this.buttonReset.TabIndex = 1;
-            this.buttonReset.Text = "Reset";
-            this.buttonReset.UseVisualStyleBackColor = true;
-            this.buttonReset.Visible = false;
-            this.buttonReset.Click += new System.EventHandler(this.buttonReset_Click);
-            // 
-            // Form1
+            // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 525);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(704, 524);
             this.Controls.Add(this.buttonReset);
             this.Controls.Add(this.Grid);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Game";
+            this.Text = "TicTacToe";
             this.Grid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
